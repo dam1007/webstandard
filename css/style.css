@@ -1,0 +1,434 @@
+@charset "UTF-8";
+
+
+/* 여기에 폼요소는 없다. input, button 등 */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,address,code,em,img,strong,sub,sup,b,u,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figure,figcaption,footer,header,hgroup,menu,nav,section,main,audio,video {margin: 0; padding: 0; box-sizing: border-box;}
+
+/*html5추가 시멘틱엘리먼트를 익스하위버전에서 블럭으로 인식되도록함
+익스 9 이하에는 글자로 취급이 안됨. 상자로 취급 됨.*/
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,main {display: block}
+/* css 초기화 끝에는 ;을 넣지 않아도 된다! */
+
+/* button태그에 손모양 커서 */
+button {cursor: pointer}
+/* 익스하위버전에서 이미지 선없애기 */
+fieldset,img {border: 0; vertical-align: top}
+/* 리스트 기호 빼기 */
+ol,ul {list-style: none}
+/* 태그 기본 기울임꼴 제거 */
+address,em {font-style: normal}
+/* 페이지안에서 가장 많은 링크색 지정 
+해당 시안에서 메뉴, 링크의 컬러가 모두 동일할 때 변주를 주기 위해 사용
+이건 공통은 아니고 시안마다, 상황마다 다름 */
+a {text-decoration: none; color: #1c1c1c}
+/* iframe으로 외부컨텐츠를 연결했을때
+외부컨텐츠안쪽내용이 우리페이지에 영향을 주지못하도록 가려줌
+*/
+iframe {overflow: hidden; border: 0}
+
+/* 칸의 선을 합치기, 칸의 간격없애기, 가로를 늘려줌 */
+table {border-collapse: collapse; border-spacing: 0; width: 100%}
+
+/* 굵기 빼고 헤딩태그 폰트크기를 body에 선언한 크기와 일치시킴 */
+h1,h2,h3,h4,h5,h6 {font-weight: normal; font-size: 100%}
+
+/* 폼요소의 높이가 다를때 요소끼리 세로정렬시킴
+폼요소도 글자취급 요소이기 때문에 vertical align으로 가능. */
+input,select,textarea,button {vertical-align: middle; margin: 0; padding: 0}
+
+/* textarea 리사이즈기능 빼기
+textarea는 엔터치면 안되고 옆으로 써야함 */
+textarea {resize: none}
+
+/* 페이지안의 모든 폰트의 줄간격을 1.5로 통일시킴
+line-height을 안걸면 1.4 정도 걸림.
+이 코드를 쓰게 되면 포토샵 시안작업 할 때 본문의 줄간격도 모두 1.5배로 통일해야함.
+줄간격 Auto를 쓸 수 없는 것. Auto 쓰려면 이 기능 뺄 것!
+폰트는 짝수의 경우 딱 떨어지는데 홀수는 나누면 소수점이 되기 때문에 반올림.
+
+-webkit : 벤더 프리픽스. 모바일 크롬, 모바일 사파리 브라우져의 텍스트 자동확대 방지 코드. text-size-adjust는 -webkit-를 붙여줘야 쓸 수 있다. */
+body {line-height: 1.5; -webkit-text-size-adjust:none}
+
+/* legend,caption,메뉴제목,섹션제목 블라인드
+네이버에 있는 것. */
+legend,caption,.blind {position: absolute; overflow: hidden; clip: rect(0 0 0 0); margin: -1px; width: 1px; height: 1px}
+
+/* 헬베티카, 애플산돌 네오고딕 있을 때 해당 폰트로 보여지고 없을 경우 단말기 기본폰트로 보여진다. */
+body,button,select,input,select,textarea,table {
+    font-family: 'Nanum Gothic', 'Lato', 'Nanum Brush Script', 'Helvetica Neue','Apple SD Gothic Neo',sans-serif;
+    font-size: 16px;
+}
+
+/* a {color: #333;} */
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+/* placeholder 컬러변경 */
+::-webkit-input-placeholder {color:#999;}
+::-moz-placeholder { color: #999; opacity: 1;}
+/*ie11에서 선택자점수가 낮게잡히는 버그때문에 강제로 점수올려줌*/
+:-ms-input-placeholder {color: #999 !important;}
+::placeholder { color: #999;}
+
+#header {background: rgb(136, 110, 110); height: 300px; background: url(../images/header_bg.jpg) no-repeat 50% 50%;}
+#header .header-menu {width: 1100px; height: 100px; margin: 0 auto; background: none; text-align: right;}
+#header .header-menu a {
+    display: inline-block;
+    color: #fff; 
+    padding: 0 20px; 
+}
+#header .header-menu a:hover {
+    color: #000; 
+}
+/* 헤더 타이틀 */
+#header .header_tit {text-align: center;}
+#header .header_tit h1 {
+    text-align: center; 
+    color: #fff; 
+    font-size: 20px; 
+    font-weight: 700;
+    background: rgb(71, 164, 250);
+    padding: 0 15px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+#header .header_tit a {
+    display: inline-block;
+    background: #2698cb; 
+    font-size: 18px; 
+    color: #fff;
+    padding: 5px 20px 6px 20px;
+    margin-top: -5px;
+}
+
+/* 헤더 아이콘 */
+#header .header-icon {text-align: center;}
+#header .header-icon a {
+    display: inline-block; 
+    width: 60px;
+    height: 60px;
+    background: url(../images/icon.png) no-repeat;
+}
+#header .header-icon a.icon2 {
+    background-position: 0 -60px;
+}
+#header .header-icon a.icon3 {
+    background-position: 0 -120px;
+}
+#header .header-icon a.icon4 {
+    background-position: 0 -180px;
+}
+
+/* 호버효과 */
+#header .header-icon a:hover {
+    background-position: -60px 0;
+}
+#header .header-icon a.icon2:hover {
+    background-position: -60px -60px;
+}
+#header .header-icon a.icon3:hover {
+    background-position: -60px -120px;
+}
+#header .header-icon a.icon4:hover {
+    background-position: -60px -180px;
+}
+
+/* 스킵 네비게이션 */
+#skip a {
+    position: absolute; 
+    left: 0px; 
+    top: -35px; 
+    border: 1px solid white; 
+    background: #333;
+    color: #fff;
+    line-height: 30px; 
+    width: 200px; 
+    text-align: center;
+    
+
+}
+#skip a:hover {
+    color: #390;
+}
+#skip a:active,
+#skip a:focus {top: 0;}
+
+
+
+/* IR 효과 */
+.ir_pm {
+    display: block; 
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+
+/* 컨테이너 레이아웃 */
+#cont_nav {background-color: #f6fdff; display: none;}
+#cont_tit {background-color: #eaf7fd;}
+#cont_ban {background-color: #dceff7;}
+#cont_cont {background-color: #f2fbff;}
+
+/* 메뉴 */
+.container {
+    width: 1100px; 
+    margin: 0 auto;
+}
+.container h2 {font-size: 20px; font-weight: 700;}
+
+#cont_nav {padding: 30px 0;}
+#cont_nav .nav {overflow: hidden;}
+#cont_nav .nav>li {float: left;  width: 33.33%;}
+#cont_nav .nav h3 {
+    font-size: 20px; 
+    font-weight: 700; 
+    color: #2698cb; 
+    margin-bottom: 20px;
+}
+
+#cont_nav .nav .depth2 {overflow: hidden;}
+#cont_nav .nav .depth2 li {float: left; width: 50%;}
+#cont_nav .nav .depth2 li a {font-size: 14px; }
+#cont_nav .nav .depth2 li a:hover {text-decoration: underline;}
+
+#cont_nav .nav>li:last-child .depth2 li {width: 100%;}
+
+
+
+/* 타이틀 */
+#cont_tit {padding: 5px 0;}
+#cont_tit .container {position: relative;}
+#cont_tit .tit {text-align: center; font-size: 40px; color: #2c94c4; font-family: 'Nanum Brush Script';}
+#cont_tit .container .btn {position: absolute; right: 0; top: 0; width: 60px; height: 60px; background: url(../images/icon.png) no-repeat 0 -600px; }
+#cont_tit .container .btn.on {background-position: 0 -660px;}
+
+
+/* 배너 */
+#cont_ban {padding: 20px 0;}
+/*
+#cont_ban .container {position: relative; }
+.prev {position: absolute; left: -80px; top: 40px; width: 43px; height: 43px; background: url(../images/icon.png) no-repeat -150px 0;}
+.next {position: absolute; right: -80px; top: 40px; width: 43px; height: 43px; background: url(../images/icon.png) no-repeat -150px -43px;}
+.prev:hover {background-position: -193px 0;}
+.next:hover {background-position: -193px -43px;}
+
+.banner {overflow: hidden;}
+.banner li {float: left; text-align: left; width: 33.33%;}
+.banner li:nth-child(2) {text-align: center;}
+.banner li:nth-child(3) {text-align: right;}
+*/
+
+/* 슬릭 배너 */
+.ban {position: relative; padding: 24px 0 60px;}
+.ban .slick-arrow {border: none; text-indent: -9999px;}
+.ban .slick-prev {position: absolute; left: -80px; top: 60px; width: 43px; height: 43px; background: url(../images/icon.png) no-repeat -150px 0;}
+.ban .slick-next {position: absolute; right: -80px; top: 60px; width: 43px; height: 43px; background: url(../images/icon.png) no-repeat -150px -43px;}
+.ban .slick-prev:hover {background-position: -193px 0;}
+.ban .slick-next:hover {background-position: -193px -43px;}
+
+.ban .slick-slide {margin-left: 30px;}
+
+.ban .slick-dots {position: absolute; bottom: 15px; left: 0; display: block; width: 100%; text-align: center; }
+.ban .slick-dots li {display: inline-block; width: 15px; height: 15px; margin: 5px;}
+.ban .slick-dots li button {font-size: 0; line-height: 0; display: block; width: 15px; height: 15px; cursor: pointer; background: #5dbfeb; border-radius: 50%; bordeR: none;}
+.ban .slick-dots li.slick-active button {background: #2b91c8;}
+
+
+
+
+/* 콘텐츠 */
+.cont {overflow: hidden; padding-top: 30px;}
+.cont>li {width: 346.66px; height: 363px; float: left; margin: 0 30px 30px 0; padding-right: 30px; position: relative;}
+.cont .col1 {border-right: 1px solid #c8c8c8;}
+.cont .col2 {border-right: 1px solid #c8c8c8;}
+.cont .col3 {margin-right: 0px; padding-right: 0px;}
+.cont .col4 {border-right: 1px solid #c8c8c8;}
+.cont .col5 {border-right: 1px solid #c8c8c8;}
+.cont .col6 {margin-right: 0px; padding-right: 0px;}
+
+/* absolute로 위치 잡고 background로 아이콘 넣어주기, 패딩처리 */
+.cont>li .ico_img {position: absolute; left: 0; top: 5px; display: block; width: 60px; height: 60px; background: url(../images/icon.png) no-repeat;}
+.cont>li .ico_tit {padding-left: 70px; font-size: 16px; color: #2c94c4; }
+.cont>li .ico_desc {padding-left: 70px; border-bottom: 1px solid #d0d0d0; padding-bottom: 15px; margin-bottom: 15px; font-size: 13px;}
+
+.cont .col1 .ico_img {background-position: 0 -240px;}
+.cont .col2 .ico_img {background-position: 0 -300px;}
+.cont .col3 .ico_img {background-position: 0 -360px;}
+.cont .col4 .ico_img {background-position: 0 -420px;}
+.cont .col5 .ico_img {background-position: 0 -480px;}
+.cont .col6 .ico_img {background-position: 0 -540px;}
+
+.cont .col1 .ico_img:hover {background-position: -60px -240px;}
+.cont .col2 .ico_img:hover {background-position: -60px -300px;}
+.cont .col3 .ico_img:hover {background-position: -60px -360px;}
+.cont .col4 .ico_img:hover {background-position: -60px -420px;}
+.cont .col5 .ico_img:hover {background-position: -60px -480px;}
+.cont .col6 .ico_img:hover {background-position: -60px -540px;}
+
+/* 게시판 */
+.notice {position: relative;}
+.notice h4 {font-size: 14px; color: #0093bd; padding-bottom: 3px; font-weight: bold;}
+.notice ul li {overflow: hidden; text-overflow: ellipsis; white-space: nowrap; background: url(../images/dot.gif) no-repeat 0 13px; padding-left: 10px;}
+.notice ul li a {font-size: 12px;}
+.notice .more {position: absolute; right: 0; top: 0; display: block; width: 17px; height: 17px; background: url(../images/icon.png) no-repeat -150px -90px;}
+.notice .more:hover {background-position: -167px -90px;}
+
+/* 게시판2 */
+.notice2 {position: relative; margin-top: 15px;}
+.notice2 h4 {font-size: 14px; color: #0093bd; padding-bottom: 3px; font-weight: bold;}
+.notice2 ul li {overflow: hidden;}
+.notice2 ul li a {float: left; width: 65%; font-size: 12px; display: block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; background: url(../images/dot.gif) no-repeat 0 8px; padding-left: 10px;}
+.notice2 ul li span {float: right; width: 30%; font-size: 12px;}
+.notice2 .more {position: absolute; right: 0; top: 0; display: block; width: 17px; height: 17px; background: url(../images/icon.png) no-repeat -150px -90px;}
+.notice2 .more:hover {background-position: -167px -90px;}
+
+/* 게시판3 */
+.notice3 {position: relative; margin-top: 15px;}
+.notice3 h4 {font-size: 14px; color: #0093bd; padding-bottom: 3px; font-weight: bold;}
+.notice3 ul li {position: relative; padding: 8px 0 14px 60px;}
+.notice3 ul li a img {width: 50px; position: absolute; left: 0; top: 0; border: 1px solid #0093bd;}
+.notice3 ul li a strong {display: block; font-size: 13px; font-weight: 700;}
+.notice3 ul li a span {display: block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-size: 12px;}
+.notice3 .more {position: absolute; right: 0; top: 0; display: block; width: 17px; height: 17px; background: url(../images/icon.png) no-repeat -150px -90px;}
+.notice3 .more:hover {background-position: -167px -90px;}
+
+
+/* 마우스호버 */
+.notice_hover h4 {font-size: 14px; color: #0093bd; padding-bottom: 3px; font-weight: bold;}
+.notice_hover ul {overflow: hidden; }
+.notice_hover ul li {float: left; width: 93px; margin-right: 10px; text-align: center;}
+.notice_hover ul li:last-child {margin-right: 0px;} /* ie9부터 적용 */
+.notice_hover ul li a span {position: relative; display: block; width: 93px; height: 93px; line-height: 93px; font-size: 12px;}
+.notice_hover ul li a span img {width: 100%;}
+.notice_hover ul li a span em {visibility: hidden; position: absolute; left: 0; top: 0; background: rgba(0,0,0,0.7); color: #fff; width: 100%; height: 100%;}
+.notice_hover ul li a span:hover em {visibility: visible;}
+.notice_hover ul li a strong {display: inline-block; padding-top: 3px; font-size: 12px;}
+
+.notice_hover ul li:nth-child(n+4) a span {line-height: 1.8;}
+.notice_hover ul li:nth-child(n+4) a span em {height: 20px; top: auto; bottom: 0;}
+
+/* 콘텐츠 요소를 보이지 않게 하는 방법
+ 1. display: none; --- 영역이 사라짐
+ 2. visibility: hidden; <--> visibility: visible; 영역유지
+ 3. opacity: 0; 영역유지
+ 4. width: 0; height: 0;
+*/
+ 
+/* tab_menu */
+.tab_menu {position: relative; border: 1px solid #ccc; padding: 8px; height: 123px;}
+.tab_menu ul {overflow: hidden; border-bottom: 1px solid #ccc;;}
+.tab_menu ul>li {float: left; border: 1px solid #ccc; margin-right: -1px;  margin-bottom: -1px;}
+.tab_menu ul>li.active {background: #2c94c4;}
+.tab_menu ul>li>a {display: block; padding: 5px 10px; font-size: 12px;}
+.tab_menu ul>li.active>a {color: #fff;}
+.tab_menu ul>li ul {position: absolute; left: 0; top: 48px; width: 285px; border: 0;}
+.tab_menu ul>li ul li {float: none; border: 0; background: url(../images/dot.gif) no-repeat 9px 9px; padding-left: 20px;}
+.tab_menu ul>li ul li a {text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 100%; padding: 0 0 3px 0;}
+
+/* 게시판4 */
+.notice4 {position: relative; border: 1px solid #ccc; top: 15px;}
+.notice4 h4 {padding: 8px; font-size: 14px; color: #0093bd; font-weight: 700; border-bottom: 1px solid #ccc;}
+.notice4 h4 em {color: #cf3292;}
+.notice4 .more {position: absolute; right: 9px; top: 9px; font-size: 13px;}
+.notice4 ul {padding: 10px 0;}
+.notice4 ul li {overflow: hidden; padding: 0px 8px 0px 21px; font-size: 12px; background: url(../images/dot.gif) no-repeat 9px 9px; }
+.notice4 ul li a {float: left; width: 60%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; padding-bottom: 3px;}
+.notice4 ul li span {float: right; height: 30%;}
+
+/* 갤러리 */
+.gallery {position: relative; border: 1px solid #ccc;}
+.gallery h4 {padding: 8px; font-size: 14px; color: #0093bd; font-weight: 700; border-bottom: 1px solid #ccc;}
+/*
+.gallery ul {position: absolute; right: 8px; top: 8px;}
+.gallery ul li {float: left; padding-left: 4px;}
+.gallery ul li a {display: block; width: 23px; height: 23px; background: url(../images/icon.png) no-repeat -150px -120px; }
+.gallery ul li:nth-child(2) a {background-position: -150px -143px;}
+.gallery ul li:nth-child(3) a {background-position: -150px -166px;}
+.gallery ul li:nth-child(4) a {background-position: -150px -189px;}
+
+.gallery ul li:nth-child(1):hover a {background-position: -173px -120px;}
+.gallery ul li:nth-child(2):hover a {background-position: -173px -143px;}
+.gallery ul li:nth-child(3):hover a {background-position: -173px -166px;}
+.gallery ul li:nth-child(4):hover a {background-position: -173px -189px;}
+*/
+
+/* 슬릭 갤러리 */
+.gallery .gallery_img {display: block; height: 220px; overflow: hidden;}
+.gallery .gallery_img img {width: 100%;}
+
+.gallery .gallery_btn {position: absolute; right: 8px; top: 8px; overflow: hidden;}
+.gallery .gallery_btn button {float: left; padding-left: 4px; width: 23px; height: 23px; background: url(../images/icon.png) no-repeat -150px -120px; border: none; text-indent: -9999px; margin-left: 4px;}
+.gallery .gallery_btn button.pause {background-position: -150px -143px;}
+.gallery .gallery_btn button.prev {background-position: -150px -166px;}
+.gallery .gallery_btn button.next {background-position: -150px -189px;}
+
+.gallery .gallery_btn button.play:hover {background-position: -173px -120px;}
+.gallery .gallery_btn button.pause:hover {background-position: -173px -143px;}
+.gallery .gallery_btn button.prev:hover {background-position: -173px -166px;}
+.gallery .gallery_btn button.next:hover {background-position: -173px -189px;}
+
+
+
+/* 로그인 폼 */
+#login_form {background: #f2f4f5; padding: 15px; margin-bottom: 15px;}
+.login_header {overflow: hidden; font-size: 12px; height: 30px;}
+.login_header .lh_check {float: left; padding-right: 15px;}
+.login_header .lh_check .input_check {vertical-align: -2px;}
+.login_header .lh_ip {float: left;}
+.login_header .lh_ip em {color: #0093bd; text-decoration: underline;}
+
+.login_content {position: relative;}
+.login_content .lc_btn {position: absolute; right: 0; top: 0; width: 62px; height: 53px; background: #fff; border: 1px solid #bebebe; }
+.login_content .lc_text .input_text {width: 235px; height: 16px; padding: 2px 5px; border: 1px solid #bebebe; margin-bottom: 3px; background: #fff;}
+
+
+.login_footer {margin-top: 5px;}
+.login_footer li {display: inline-block; font-size: 12px; }
+
+
+
+/* 팝업 */
+.popup h4 {font-size: 14px; color: #0093bd; padding-bottom: 4px; font-weight: 700;}
+.popup ul {overflow: hidden;}
+.popup ul li {float: left; width: 93px; margin-right: 10px;}
+.popup ul li.last {margin-right: 0;}
+.popup ul li img {width: 100%;}
+
+
+/* 푸터 */
+#footer {border-top: 1px solid #eee;}
+.footer {padding: 25px 0; text-align: center;}
+.footer ul {margin-bottom: 20px;}
+.footer ul li {display: inline-block; padding: 0 7px 0 10px; 
+ position: relative; font-size: 12px;}
+.footer ul li:before {content: ''; position: absolute; left: 0; top: 4px; width: 1px; height: 12px; background: #ccc;}
+.footer ul li:first-child:before {display: none;}
+.footer address {font-size: 12px;}
+
+
+.footer .w3c {margin-top: 15px;}
+
+
+
+
+/* 레이어 팝업 */
+#layer {display: none; position: fixed; left: 50px; top: 50px; width: 700px; border: 10px solid #dceff7; box-shadow: 3px 3px 10px rgba(0,0,0,0.4);}
+#layer img {width: 100%;}
+#layer .close {position: absolute; right: 20px; top: 20px; background: #0093bd; padding: 1px 6px; color: #fff;}
+#layer .close:hover {text-decoration: underline;}
+
+
+/* 라이트박스 */
+
+
+
+
